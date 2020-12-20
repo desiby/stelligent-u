@@ -113,7 +113,8 @@ authorized to in the labs account. These tokens will last approximately
 
 What method did you use to store the aws credentials?  What are some other
 options?
->I stored the default credentials in a python file, imported file into mfascript.py file.
+>I stored the default credentials in a python file, 
+imported file into mfascript.py file.
 Temporary credentials were stored using os.environ method from os library.
 Other options are AWS vault or Hashicorp vault.
 
@@ -121,7 +122,8 @@ Other options are AWS vault or Hashicorp vault.
 
 Which AWS environment variable cannot be set in order to run the
 `aws sts get-session-token` command?
->the following need to be unset: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY ,AWS_SESSION_TOKEN
+>the following need to be unset: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
+AWS_SESSION_TOKEN
 
 ##### Option 2: Using AWS Vault to automatically handle your temporary tokens
 
@@ -199,7 +201,8 @@ results. What does this tell you about the access the keys give you on
 your laptop and the access you have in the Cloud9 environment? What
 other methods are there to provide this level of access without using
 keys?_
->keys are already configured automatically in cloud9 and are the same on the local enviroment.
+>keys are already configured automatically in cloud9
+and are the same local enviroment.
 
 #### Task
 
