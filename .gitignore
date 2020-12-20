@@ -10,3 +10,11 @@ __pycache__
 *.code-workspace
 
 .ruby-version
+
+00-dev-environment/hello_node/node_modules
+00-dev-environment/hello_node/package.json
+00-dev-environment/hello_node/package-lock.json
+00-dev-environment/aws_default_credentials.py
+00-dev-environment/credential.json
+.gitignore
+
