@@ -113,7 +113,7 @@ authorized to in the labs account. These tokens will last approximately
 
 What method did you use to store the aws credentials?  What are some other
 options?
->I stored the default credentials in a python file, 
+>I stored the default credentials in a python file,
 imported file into mfascript.py file.
 Temporary credentials were stored using os.environ method from os library.
 Other options are AWS vault or Hashicorp vault.
