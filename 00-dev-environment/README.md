@@ -120,11 +120,7 @@ options?
 
 Which AWS environment variable cannot be set in order to run the
 `aws sts get-session-token` command?
-
-><span style="color:green">the following need to be unset: 
-AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY ,AWS_SESSION_TOKEN
-</span>
-
+>the following need to be unset: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY ,AWS_SESSION_TOKEN
 
 ##### Option 2: Using AWS Vault to automatically handle your temporary tokens
 
@@ -202,8 +198,7 @@ results. What does this tell you about the access the keys give you on
 your laptop and the access you have in the Cloud9 environment? What
 other methods are there to provide this level of access without using
 keys?_
-
-><span style="color:green">keys are already configured automatically in cloud9 and are the same on the local enviroment.</span>
+>keys are already configured automatically in cloud9 and are the same on the local enviroment.
 
 #### Task
 
