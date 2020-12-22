@@ -159,7 +159,8 @@ For further reading, see the S3 [Access Policy Language Overview](https://docs.a
 ##### Question: Sync vs Copy
 
 _What makes "sync" a better choice than "cp" for some S3 uploads?_
->*sync will watch files and folders for changes and automatically upload
+>*sync will watch files and folders for
+changes and automatically upload
 new versions to target buckets.*
 
 #### Lab 2.1.3: Exclude Private Objects When Uploading to a Bucket
@@ -180,6 +181,7 @@ bucket again **without including the private file**.
 
 Clean up: remove your bucket. What do you have to do before you can
 remove it?
+>empty it!
 
 ### Retrospective 2.1
 
