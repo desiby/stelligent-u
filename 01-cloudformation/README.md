@@ -146,7 +146,6 @@ name.
 - Before deleting this lesson's Stacks, apply
   [Termination Protection](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html)
   to one of them.
-
 - Try to delete the Stack using the AWS CLI. What happens?
 >we get the following message:
 An error occurred (ValidationError) when calling the DeleteStack operation:
@@ -249,16 +248,15 @@ cannot perform 'Put' actions on any S3 buckets.
 select service (S3), select action(PutObject),
 click "Run Simulation". Should see "Denied" in the result.
 #### Task: SSM Parameter Store
-
 Using the AWS Console, create a Systems Manager Parameter Store
 parameter in the same region as the first Stack, and provide a value for
 that parameter. Modify the first Stack's template so that it utilizes
 this Parameter Store parameter value as the IAM User's name. Update the
 first stack. Finally, tear it down.
 >command to run with using SSM parameter store<br>
-`aws cloudformation create-stack --stack-name desirebahbioh-mystack
+aws cloudformation create-stack --stack-name desirebahbioh-mystack
 --template-body file://newuser.yaml --capabilities CAPABILITY_NAMED_IAM
---parameters ParameterKey=NewUserName,ParameterValue=/desirebahbioh/cfnusers`
+--parameters ParameterKey=NewUserName,ParameterValue=/desirebahbioh/cfnusers
 
 ## Lesson 1.3: Portability & Staying DRY
 
