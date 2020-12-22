@@ -127,7 +127,7 @@ Add an object to your bucket:
 >
 >or
 >
->use a bash script to upload several files at once
+>replace cp with sync
 
 - List the contents of the bucket after each upload.
 
