@@ -146,7 +146,9 @@ name.
 - Before deleting this lesson's Stacks, apply
   [Termination Protection](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html)
   to one of them.
+
 - Try to delete the Stack using the AWS CLI. What happens?
+
 >we get the following message:
 An error occurred (ValidationError) when calling the DeleteStack operation:
 Stack [desirebahbioh-mystack] cannot be deleted while TerminationProtection is enabled
@@ -247,12 +249,15 @@ cannot perform 'Put' actions on any S3 buckets.
 >chose IAM user for which s3 bucket policy is attached,
 select service (S3), select action(PutObject),
 click "Run Simulation". Should see "Denied" in the result.
+
 #### Task: SSM Parameter Store
+
 Using the AWS Console, create a Systems Manager Parameter Store
 parameter in the same region as the first Stack, and provide a value for
 that parameter. Modify the first Stack's template so that it utilizes
 this Parameter Store parameter value as the IAM User's name. Update the
 first stack. Finally, tear it down.
+
 ## Lesson 1.3: Portability & Staying DRY
 
 ### Principle 1.3
