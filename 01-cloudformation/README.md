@@ -243,8 +243,10 @@ from the depending stack, then delete the original stack with exported values
 
 #### Task: Policy Tester
 
-Show how to use the IAM policy tester to demonstrate that the user cannot perform 'Put' actions on any S3 buckets.
->chose IAM user for which s3 bucket policy is attached, select service (S3), select action(PutObject),
+Show how to use the IAM policy tester to demonstrate that the user
+cannot perform 'Put' actions on any S3 buckets.
+>chose IAM user for which s3 bucket policy is attached,
+select service (S3), select action(PutObject),
 click "Run Simulation". Should see "Denied" in the result.
 #### Task: SSM Parameter Store
 
@@ -254,8 +256,8 @@ that parameter. Modify the first Stack's template so that it utilizes
 this Parameter Store parameter value as the IAM User's name. Update the
 first stack. Finally, tear it down.
 >command to run with using SSM parameter store<br>
-`aws cloudformation create-stack --stack-name desirebahbioh-mystack 
---template-body file://newuser.yaml --capabilities CAPABILITY_NAMED_IAM 
+`aws cloudformation create-stack --stack-name desirebahbioh-mystack
+--template-body file://newuser.yaml --capabilities CAPABILITY_NAMED_IAM
 --parameters ParameterKey=NewUserName,ParameterValue=/desirebahbioh/cfnusers`
 
 ## Lesson 1.3: Portability & Staying DRY
