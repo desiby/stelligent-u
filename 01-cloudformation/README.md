@@ -150,9 +150,14 @@ name.
 - Try to delete the Stack using the AWS CLI. What happens?
 
 >we get the following message:
+<<<<<<< HEAD
 An error occurred (ValidationError) when calling
 the DeleteStack operation: Stack [desirebahbioh-mystack]
 cannot be deleted while TerminationProtection is enabled
+=======
+An error occurred (ValidationError) when calling the DeleteStack operation:
+Stack [desirebahbioh-mystack] cannot be deleted while TerminationProtection is enabled
+>>>>>>> d299952c2615fce8e458023d2a949facfd2dfba3
 
 - Remove termination protection and try again.
 
@@ -172,9 +177,14 @@ more readable, easier to write
 _What else can you do to prevent resources in a stack from being deleted?_
 
 See [DeletionPolicy](https://aws.amazon.com/premiumsupport/knowledge-center/cloudformation-accidental-updates/).
+<<<<<<< HEAD
 >set deletionPolicy attribute for
 the resource at the stack level, use IAM policy,
 assign a stack policy to a user in the template.
+=======
+>set deletionPolicy attribute for the resource at the stack level,
+use IAM policy, assign a stack policy to a user in the template.
+>>>>>>> d299952c2615fce8e458023d2a949facfd2dfba3
 
 _How is that different from applying Termination Protection?_
 >It can be managed with code, scaled and automated
@@ -238,16 +248,23 @@ the Managed Policy ARN created by and exported from the previous Stack.
 Delete your CFN stacks in the same order you created them in. Did you
 succeed? If not, describe how you would _identify_ the problem, and
 resolve it yourself.
+<<<<<<< HEAD
 >I did not succed at first because
 the stack was a dependency from another stack.
 To solve the issue I had first to delete the stack
 that was using the imorted value from the depending stack,
 then delete the original stack with exported values
+=======
+>I did not succed at first because the stack was a dependency from another stack.
+To solve the issue I had first to delete the stack that was using the imorted value
+from the depending stack, then delete the original stack with exported values
+>>>>>>> d299952c2615fce8e458023d2a949facfd2dfba3
 
 ### Retrospective 1.2
 
 #### Task: Policy Tester
 
+<<<<<<< HEAD
 Show how to use the IAM policy tester
 to demonstrate that the user cannot perform
 'Put' actions on any S3 buckets.
@@ -255,6 +272,12 @@ to demonstrate that the user cannot perform
 >chose IAM user for which s3 bucket policy
 is attached, select service (S3),
 select action(PutObject),
+=======
+Show how to use the IAM policy tester to demonstrate that the user
+cannot perform 'Put' actions on any S3 buckets.
+>chose IAM user for which s3 bucket policy is attached,
+select service (S3), select action(PutObject),
+>>>>>>> d299952c2615fce8e458023d2a949facfd2dfba3
 click "Run Simulation". Should see "Denied" in the result.
 
 #### Task: SSM Parameter Store
