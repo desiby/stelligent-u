@@ -148,6 +148,7 @@ name.
   to one of them.
 
 - Try to delete the Stack using the AWS CLI. What happens?
+
 >we get the following message:
 An error occurred (ValidationError) when calling the DeleteStack operation: Stack [desirebahbioh-mystack] cannot be deleted while TerminationProtection is enabled
 
@@ -169,7 +170,7 @@ more readable, easier to write
 _What else can you do to prevent resources in a stack from being deleted?_
 
 See [DeletionPolicy](https://aws.amazon.com/premiumsupport/knowledge-center/cloudformation-accidental-updates/).
->set deletionPolicy attribute for the resource at the stack level, use IAM policy, assign a stack policy to a user in the template. 
+>set deletionPolicy attribute for the resource at the stack level, use IAM policy, assign a stack policy to a user in the template.
 
 _How is that different from applying Termination Protection?_
 >It can be managed with code, scaled and automated
@@ -244,6 +245,7 @@ Show how to use the IAM policy tester to demonstrate that the user cannot perfor
 ![alt text](https://www.dropbox.com/s/ycwpdxif65a0d76/policy-tester.jpg?dl=0 "policy-test")
 >chose IAM user for which s3 bucket policy is attached, select service (S3), select action(PutObject),
 click "Run Simulation". Should see "Denied" in the result.
+
 #### Task: SSM Parameter Store
 
 Using the AWS Console, create a Systems Manager Parameter Store
@@ -251,8 +253,7 @@ parameter in the same region as the first Stack, and provide a value for
 that parameter. Modify the first Stack's template so that it utilizes
 this Parameter Store parameter value as the IAM User's name. Update the
 first stack. Finally, tear it down.
->command to run with using SSM parameter store<br>
-`aws cloudformation create-stack --stack-name desirebahbioh-mystack --template-body file://newuser.yaml --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NewUserName,ParameterValue=/desirebahbioh/cfnusers`
+>command to run with using SSM parameter store
 
 ## Lesson 1.3: Portability & Staying DRY
 
