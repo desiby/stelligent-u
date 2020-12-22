@@ -253,11 +253,6 @@ parameter in the same region as the first Stack, and provide a value for
 that parameter. Modify the first Stack's template so that it utilizes
 this Parameter Store parameter value as the IAM User's name. Update the
 first stack. Finally, tear it down.
->command to run with using SSM parameter store<br>
-aws cloudformation create-stack --stack-name desirebahbioh-mystack
---template-body file://newuser.yaml --capabilities CAPABILITY_NAMED_IAM
---parameters ParameterKey=NewUserName,ParameterValue=/desirebahbioh/cfnusers
-
 ## Lesson 1.3: Portability & Staying DRY
 
 ### Principle 1.3
