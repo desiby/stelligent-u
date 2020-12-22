@@ -150,14 +150,12 @@ name.
 - Try to delete the Stack using the AWS CLI. What happens?
 
 >we get the following message:
-<<<<<<< HEAD
 An error occurred (ValidationError) when calling
 the DeleteStack operation: Stack [desirebahbioh-mystack]
 cannot be deleted while TerminationProtection is enabled
-=======
 An error occurred (ValidationError) when calling the DeleteStack operation:
-Stack [desirebahbioh-mystack] cannot be deleted while TerminationProtection is enabled
->>>>>>> d299952c2615fce8e458023d2a949facfd2dfba3
+Stack [desirebahbioh-mystack] cannot be deleted
+while TerminationProtection is enabled
 
 - Remove termination protection and try again.
 
