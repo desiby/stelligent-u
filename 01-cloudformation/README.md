@@ -148,6 +148,8 @@ name.
   to one of them.
 
 - Try to delete the Stack using the AWS CLI. What happens?
+>we get the following message:
+An error occurred (ValidationError) when calling the DeleteStack operation: Stack [desirebahbioh-mystack] cannot be deleted while TerminationProtection is enabled
 
 - Remove termination protection and try again.
 
@@ -159,19 +161,24 @@ name.
 #### Question: Why YAML
 
 _Why do we prefer the YAML format for CFN templates?_
+>ability to self reference, support for comments
+more readable, easier to write
 
 #### Question: Protecting Resources
 
 _What else can you do to prevent resources in a stack from being deleted?_
 
 See [DeletionPolicy](https://aws.amazon.com/premiumsupport/knowledge-center/cloudformation-accidental-updates/).
+>set deletionPolicy attribute for the resource at the stack level, use IAM policy, assign a stack policy to a user in the template. 
 
 _How is that different from applying Termination Protection?_
+>It can be managed with code, scaled and automated
 
 #### Task: String Substitution
 
 Demonstrate 2 ways to code string combination/substitution using
 built-in CFN functions.
+>see mys3bucket.yaml and mys3bucket2.yaml
 
 ## Lesson 1.2: Integration with Other AWS Resources
 
@@ -226,14 +233,17 @@ the Managed Policy ARN created by and exported from the previous Stack.
 Delete your CFN stacks in the same order you created them in. Did you
 succeed? If not, describe how you would _identify_ the problem, and
 resolve it yourself.
+>I did not succed at first because the stack was a dependency from another stack. To solve the issue I had first to delete the stack that was using the imorted value from the depending stack, then delete the original stack with exported values
 
 ### Retrospective 1.2
 
 #### Task: Policy Tester
 
-Show how to use the IAM policy tester to demonstrate that the user
-cannot perform 'Put' actions on any S3 buckets.
+Show how to use the IAM policy tester to demonstrate that the user cannot perform 'Put' actions on any S3 buckets.
 
+![alt text](https://www.dropbox.com/s/ycwpdxif65a0d76/policy-tester.jpg?dl=0 "policy-test")
+>chose IAM user for which s3 bucket policy is attached, select service (S3), select action(PutObject),
+click "Run Simulation". Should see "Denied" in the result.
 #### Task: SSM Parameter Store
 
 Using the AWS Console, create a Systems Manager Parameter Store
@@ -241,6 +251,8 @@ parameter in the same region as the first Stack, and provide a value for
 that parameter. Modify the first Stack's template so that it utilizes
 this Parameter Store parameter value as the IAM User's name. Update the
 first stack. Finally, tear it down.
+>command to run with using SSM parameter store<br>
+`aws cloudformation create-stack --stack-name desirebahbioh-mystack --template-body file://newuser.yaml --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=NewUserName,ParameterValue=/desirebahbioh/cfnusers`
 
 ## Lesson 1.3: Portability & Staying DRY
 
@@ -317,6 +329,10 @@ functionality. Query S3 to ensure that the buckets have been deleted.
 
 _Can you list 4 features of CloudFormation that help make a CFN template
 portable code?_
+>it can be saved in S3 and accessed from anywhere
+>it can be used as dependency
+>it can be used different programming languages (via SDK)
+>it can be shared between different aws accounts
 
 #### Task: DRYer Code
 
