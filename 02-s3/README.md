@@ -119,26 +119,48 @@ Add an object to your bucket:
 - Copy the file to your bucket using the "aws s3" command. Find more
   than one way to upload it.
 
+>-*aws s3 cp apn-biz.png s3://stelligent-u-desire.bahbioh/*
+
+>-*aws s3 cp apn-econ.png s3://stelligent-u-desire.bahbioh/*
+
+>-*aws s3 cp apn-tech.png s3://stelligent-u-desire.bahbioh/*
+
+>or
+
+>use a bash script to upload several files at once
+
 - List the contents of the bucket after each upload.
+
+>*aws s3 ls s3://stelligent-u-desire.bahbioh*
 
 ##### Question: Copying to Top Level
 
 _How would you copy the contents of the directory to the top level of your bucket?_
+
+>*aws s3 cp data s3://stelligent-u-desire.bahbioh/ --recursive*
 
 ##### Question: Directory Copying
 
 _How would you copy the contents and include the directory name in the s3 object
 paths?_
 
+>add the source directory name to the target s3 bucket prefix
+>
+>*aws s3 cp --recursive data s3://stelligent-u-desire.bahbioh/data*
+
 ##### Question: Object Access
 
 _[Can anyone else see your file yet](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)?_
+
+>*No, by default buckets and objects are private*
 
 For further reading, see the S3 [Access Policy Language Overview](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-policy-language-overview.html).
 
 ##### Question: Sync vs Copy
 
 _What makes "sync" a better choice than "cp" for some S3 uploads?_
+>*sync will watch files and folders for changes and automatically upload
+new versions to target buckets.*
 
 #### Lab 2.1.3: Exclude Private Objects When Uploading to a Bucket
 
