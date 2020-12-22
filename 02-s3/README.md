@@ -120,13 +120,13 @@ Add an object to your bucket:
   than one way to upload it.
 
 >-*aws s3 cp apn-biz.png s3://stelligent-u-desire.bahbioh/*
-
+>
 >-*aws s3 cp apn-econ.png s3://stelligent-u-desire.bahbioh/*
-
+>
 >-*aws s3 cp apn-tech.png s3://stelligent-u-desire.bahbioh/*
-
+>
 >or
-
+>
 >use a bash script to upload several files at once
 
 - List the contents of the bucket after each upload.
