@@ -173,10 +173,6 @@ _What else can you do to prevent resources in a stack from being deleted?_
 
 See [DeletionPolicy](https://aws.amazon.com/premiumsupport/knowledge-center/cloudformation-accidental-updates/).
 
->set deletionPolicy attribute for
-the resource at the stack level, use IAM policy,
-assign a stack policy to a user in the template.
-
 >set deletionPolicy attribute for the resource at the stack level,
 use IAM policy, assign a stack policy to a user in the template.
 
