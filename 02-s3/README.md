@@ -103,7 +103,11 @@ Using "aws s3", create a bucket:
 
 - Call the bucket "stelligent-u-_your-AWS-username_".
 
+>*aws s3 mb s3://stelligent-u-desire.bahbioh --region us-west-2*
+
 - List the contents of the bucket.
+
+>*aws s3 ls s3://stelligent-u-desire.bahbioh*
 
 #### Lab 2.1.2: Upload Objects to a Bucket
 
