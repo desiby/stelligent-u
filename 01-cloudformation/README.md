@@ -175,8 +175,6 @@ See [DeletionPolicy](https://aws.amazon.com/premiumsupport/knowledge-center/clou
 
 >set deletionPolicy attribute for the resource at the stack level,
 use IAM policy, assign a stack policy to a user in the template.
-=======
-
 
 _How is that different from applying Termination Protection?_
 >It can be managed with code, scaled and automated
