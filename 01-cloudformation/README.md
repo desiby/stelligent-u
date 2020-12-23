@@ -172,9 +172,11 @@ more readable, easier to write
 _What else can you do to prevent resources in a stack from being deleted?_
 
 See [DeletionPolicy](https://aws.amazon.com/premiumsupport/knowledge-center/cloudformation-accidental-updates/).
->set deletionPolicy attribute for
-the resource at the stack level, use IAM policy,
-assign a stack policy to a user in the template.
+
+>set deletionPolicy attribute for the resource at the stack level,
+use IAM policy, assign a stack policy to a user in the template.
+=======
+
 
 _How is that different from applying Termination Protection?_
 >It can be managed with code, scaled and automated
@@ -238,6 +240,7 @@ the Managed Policy ARN created by and exported from the previous Stack.
 Delete your CFN stacks in the same order you created them in. Did you
 succeed? If not, describe how you would _identify_ the problem, and
 resolve it yourself.
+
 >I did not succed at first because
 the stack was a dependency from another stack.
 To solve the issue I had first to delete the stack
@@ -255,6 +258,7 @@ to demonstrate that the user cannot perform
 >chose IAM user for which s3 bucket policy
 is attached, select service (S3),
 select action(PutObject),
+
 click "Run Simulation". Should see "Denied" in the result.
 
 #### Task: SSM Parameter Store
@@ -366,3 +370,4 @@ Related topics to extend your knowledge about CloudFormation:
 - Using [StackSets](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html)
   to deploy a CloudFormation stack simultaneously across an array of
   AWS Account and Regions
+
