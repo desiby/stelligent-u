@@ -127,7 +127,7 @@ Add an object to your bucket:
 >
 >or
 >
->replace cp with sync
+>*replace cp with sync*
 
 - List the contents of the bucket after each upload.
 
@@ -159,23 +159,29 @@ For further reading, see the S3 [Access Policy Language Overview](https://docs.a
 ##### Question: Sync vs Copy
 
 _What makes "sync" a better choice than "cp" for some S3 uploads?_
->*sync will watch files and folders for changes and automatically upload
+>*sync will watch files and folders for
+changes and automatically upload
 new versions to target buckets.*
 
 #### Lab 2.1.3: Exclude Private Objects When Uploading to a Bucket
 
 Add a private file to your data directory. Then, upload the directory to your
 bucket again **without including the private file**.
+>*aws s3 sync data s3://stelligent-u-desire.bahbioh/data/
+>--exclude "picture.png"*
 
 - Verify after uploading that the file doesn't exist in the bucket.
 
 - Did you find two different ways to accomplish this task? If not, make sure to
   read the [documentation on sync flags](https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html).
 
+>*yes, just replace cp with sync*
+
 #### Lab 2.1.4: Clean Up
 
 Clean up: remove your bucket. What do you have to do before you can
 remove it?
+>empty it!
 
 ### Retrospective 2.1
 

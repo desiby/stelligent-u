@@ -368,4 +368,3 @@ Related topics to extend your knowledge about CloudFormation:
 - Using [StackSets](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html)
   to deploy a CloudFormation stack simultaneously across an array of
   AWS Account and Regions
-
