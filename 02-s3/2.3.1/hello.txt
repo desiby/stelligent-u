@@ -1,0 +1,2 @@
+this is a text file
+version 2.0 of that file
