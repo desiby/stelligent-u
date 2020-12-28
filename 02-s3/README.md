@@ -225,9 +225,15 @@ permissions on the file?_
 
 (Hint: see the list of [Canned ACLs](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).)
 
+>*aws s3 cp private.txt
+s3://stelligent-u-desire.bahbioh/data/
+--acl bucket-owner-full-control*
+
 ##### Question: Changing Permissions
 
 _Is there a way you can change the permissions on the file without re-uploading it?_
+>*yes from the console, select object,
+click on "permission" tab, the "edit"*
 
 #### Lab 2.2.3: Using the API from the CLI
 
@@ -244,8 +250,17 @@ authenticated user:
 
 - Set a bucket policy to grant public read access.
 
+>*aws s3api put-bucket-policy
+--bucket stelligent-u-desire.bahbioh
+--policy file://policy.json*
+
 - Set an S3 ACL on "private.txt" to block read access unless you're
   authenticated.
+
+>*aws s3api put-object
+--bucket stelligent-u-desire.bahbioh
+--key private.txt
+--acl authenticated-read*
 
 When you're done, verify that anybody (e.g. you, unauthenticated) can
 read most files but can't read "private.txt", and only you can modify
@@ -255,10 +270,20 @@ file and read "private.txt".
 
 _What do you see when you try to read the existing bucket policy before you
 replace it?_
+>aws s3api get-bucket-policy --bucket stelligent-u-desire.bahbioh
+>
+>{
+    "Policy": "{\"Version\":\"2008-10-17\",
+    \"Statement\":[{\"Effect\":\"Allow\",
+    \"Principal\":\"*\",\"Action\":\"s3:GetObject\",
+    \"Resource\":\"arn:aws:s3:::stelligent-u-desire.bahbioh/*\"}]}"
+>}
 
 #### Question: Default Permissions
 
 _How do the default permissions differ from the policy you're setting?_
+
+>*Without this policy objects would be private by default.*
 
 #### Lab 2.2.4: Using CloudFormation
 
@@ -326,16 +351,29 @@ Delete one of the objects that you changed.
 ##### Question: Deleted Object Versions
 
 _Can you still retrieve old versions of the object you removed?_
+>*YES*
 
 ##### Question: Deleting All Versions
 
 _How would you delete all versions?_
+
+>*pass a json containing all versions
+along with the "delete marker" to the
+following command:*
+>
+>*aws s3api delete-objects
+--bucket stelligent-u-desire.bb
+--delete file://delete.json*
 
 #### Lab 2.3.3: Tagging S3 Resources
 
 Tag one or more of your objects or buckets using "aws s3api", or add
 tags to your bucket through CloudFormation. View the tags on them
 through the CLI or the console.
+>*aws s3api put-object-tagging
+--bucket stelligent-u-desire.bb
+--key hello.txt --tagging
+'{"TagSet": [{ "Key": "type", "Value": "text" }]}'*
 
 ##### Question: Deleting Tags
 
@@ -343,6 +381,8 @@ _Can you change a single tag on a bucket or object, or do you have to change
 all its tags at once?_
 
 (See `aws:cloudformation:stack-id` and other AWS-managed tags.)
+>*S3 bucket from stack has 3 managed tags
+that can be changed at once*
 
 #### Lab 2.3.4: Object Lifecycles
 
@@ -356,12 +396,18 @@ Create a lifecycle policy for the bucket:
 
 - Remove all aborted multipart uploads after 1 day.
 
+>*aws s3api put-bucket-lifecycle-configuration
+--bucket stelligent-u-desire.bb--lifecycle-configuration
+file://lifecycle.json*
+
 After updating your stack, use the [S3 console's](https://console.aws.amazon.com/s3/)
 _Management Lifecycle_ tab to double-check your settings.
 
 ##### Question: Improving Speed
 
 _Can you make any of these transitions more quickly?_
+
+>*No, minimun storage days before transitioning is 30*
 
 *See the [S3 lifecycle transitions doc](https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html).*
 
@@ -370,11 +416,17 @@ _Can you make any of these transitions more quickly?_
 For objects with the tag you assigned earlier and under the `trash/` prefix,
 expire them after 1 day.
 
+>*see lifecycle.json file*
+
 ### Retrospective 2.3
 
 *How could the lifecycle and versioning features of S3 be used to manage
 the lifecycle of a web application? Would you use those features to manage
 the webapp code itself, or just the app's data?*
+
+>*we can use this feature to manage data that are
+infrequently requested by the webapp users. These
+features should be used to manage just the app's data*
 
 ## Lesson 2.4: S3 Object Encryption
 
@@ -396,6 +448,8 @@ S3-managed key ("SSE-S3").
 ##### Question: Encrypting Existing Objects
 
 _Do you need to re-upload all your files to get them encrypted?_
+
+>Yes
 
 #### Lab 2.4.2: SSE with KMS Keys
 
@@ -419,11 +473,15 @@ key.
 
 _Look through the [S3 encryption docs](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html).
 What benefits might you gain by using a KMS key instead of an S3-managed key?_
+>*added protection against unauthorized access by setting permissions*
+>*provides an audit trail that shows when the CMK was used and by whom*
+>*the CMK is unique to you, your service and your region*
 
 ##### Question: Customer Managed CMK
 
 _Going further, what benefits might you gain by using a KMS key you created
 yourself?_
+>*The KMS key is unique to me and can be used accross AWS services.*
 
 #### Lab 2.4.3: Using Your Own KMS Key
 
@@ -444,6 +502,7 @@ Use your own KMS key to encrypt files in S3.
 ##### Question: CMK Alias
 
 _Can you use the alias when uploading files?_
+*No, must use --ssekms-key-id*
 
 ### Retrospective 2.4
 
@@ -452,9 +511,14 @@ _Can you use the alias when uploading files?_
 _After changing your bucket policy, can you upload files that aren't encrypted?
 If so, how would you require encryption on all files?_
 
+>*Set a the bucket policy(with a condition) that will deny all uploads
+that do not include the x-amz-server-side-encryption
+header requesting server-side encryption with SSE-KMS*
+
 #### Question: Multiple Keys
 
 _Can you use different keys for different objects?_
+>Yes
 
 ## Further Reading
 

@@ -1,0 +1,42 @@
+{
+    "Rules": [
+        {
+            "ID": "IA-GLA-VEREXP-MULTIPART",
+            "Filter":{
+              "Prefix": ""
+            },            
+            "Status": "Enabled",
+            "Transitions": [
+                {
+                    "Days": 30,
+                    "StorageClass": "STANDARD_IA"
+                },
+                {
+                    "Days": 90,
+                    "StorageClass": "GLACIER"
+                }
+                   
+            ],
+            "NoncurrentVersionExpiration": { "NoncurrentDays": 7 },
+            "AbortIncompleteMultipartUpload": { "DaysAfterInitiation": 1 }
+        },
+        {
+            "Expiration":{
+                "Days": 1
+            },
+            "ID": "trash-obj",
+            "Filter":{
+               "And":{
+                   "Prefix": "trash/",
+                   "Tags":[
+                       {
+                           "Key": "type",
+                           "Value": "text"
+                       }
+                   ]
+               }
+            },
+            "Status": "Enabled"
+        }
+    ]
+}
