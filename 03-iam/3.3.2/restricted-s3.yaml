@@ -25,7 +25,9 @@ Resources:
               Statement:
               - Effect: Allow
                 Action: 's3:*'
-                Resource: arn:aws:s3:::unrestricted.desirebb1
+                Resource: 
+                - arn:aws:s3:::unrestricted.desirebb1
+                - arn:aws:s3:::unrestricted.desirebb1/*
             PolicyName: s3full
           - PolicyDocument:
               Version: 2012-10-17
