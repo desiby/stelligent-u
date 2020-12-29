@@ -268,6 +268,8 @@ Clean up. Take the actions necessary to delete the stack.
 
 #### Question: Inline vs Customer Managed Policies
 
+>
+
 - In the context of an AWS User or Role, what is the difference between
 an inline policy and a customer managed policy?
 
@@ -418,7 +420,8 @@ could this be accomplished?_
 
 Research and review the best method to limit uploads with a specific prefix to
 an S3 bucket.
->Insert a condition in the role policy or append the prefix to the Arn or the bucket with the action of Allow
+>*Insert a condition in the role policy or append the prefix
+to the Arn or the bucket with the action of Allow*
 
 ## Further Reading
 
