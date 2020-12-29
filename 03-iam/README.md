@@ -89,8 +89,13 @@ Create a CFN template that specifies an IAM Role.
 - Use the [awscli](https://docs.aws.amazon.com/cli/latest/reference/iam/index.html)
   to query the IAM service twice:
 
-  - List all the Roles
-  - Describe the specific Role your Stack created.
+- List all the Roles
+
+>*aws iam list-roles*
+
+- Describe the specific Role your Stack created.
+
+>*aws iam get-role --role-name iam-read-only*
 
 #### Lab 3.1.2: Customer Managed Policy
 
@@ -122,8 +127,10 @@ policy:
 
 - Update the Stack. *Did the stack update work?*
 
-  - Query the stack to determine its state.
-  - If the stack update was not successful,
+>*Yes*
+
+- Query the stack to determine its state.
+- If the stack update was not successful,
     [troubleshoot and determine why](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement).
 
 #### Lab 3.1.4: AWS-Managed Policies
@@ -167,6 +174,9 @@ _In Lab 3.1.5, you had to determine the Amazon resource Names (ARN) of the
 stack's two roles in order to pass those values to the CLI function. You
 probably used the AWS web console to get the ARN for each role. What
 could you have done to your CFN template to make that unnecessary?_
+
+>*export the roles arn values in the Output
+section of the template*
 
 #### Task: Stack Outputs
 
@@ -226,8 +236,11 @@ Test the capabilities of this new Role.
 
 - Acting as this role, try to create an S3 bucket using the AWS CLI.
 
-  - Did it succeed? It should not have!
-  - If it succeeded, troubleshoot how Read access allowed the role
+- Did it succeed? It should not have!
+
+>*No it did not*
+
+- If it succeeded, troubleshoot how Read access allowed the role
     to create a bucket.
 
 #### Lab 3.2.3: Add privileges to the role
@@ -255,9 +268,20 @@ Clean up. Take the actions necessary to delete the stack.
 
 #### Question: Inline vs Customer Managed Policies
 
-_In the context of an AWS User or Role, what is the difference between
-an inline policy and a customer managed policy? What are the differences
+- In the context of an AWS User or Role, what is the difference between
+an inline policy and a customer managed policy?
+
+>*An inline policy applies to a specific
+User or Role whereas customer managed policy
+is a custom policy created and maintained
+by the user and can be re-used with other Users or Roles*
+
+- What are the differences
 between a customer managed policy and an AWS managed policy?_
+
+>*Customer managed policy is a custom policy created and
+maintained by the user whereas AWS managed policy
+is a pre-defined policy maintained by AWS*
 
 #### Question: Role Assumption
 
@@ -266,6 +290,22 @@ mixed with those of the role being assumed?
 Describe how that could easily be demonstrated with both a
 [positive and negative testing](https://www.guru99.com/positive-vs-negative-testing.html)
 approach._
+
+>No they are not mixed.
+>
+>define a profile for the role in the ~/.aws/config file
+with attributes  role_arn as the role arn,
+and source_profile as the initial profile.
+>
+>the CLI uses the credentials defined in a separate profile
+(ex: temp) to assume the role with the Amazon Resource Name (ARN).
+>
+>We then run any operations that are allowed by the permissions
+assigned to that role by specifying --profile
+with the name defined in ~/.aws/config file.
+>For the negative test: specifying --profile with a name
+different from the one in the ~/.aws/config will
+return a "permission denied message"
 
 ## Lesson 3.3: Fine-Grained Controls With Policies
 
@@ -322,7 +362,13 @@ read-only access to the other.
 
 *Were there any errors? If so, take note of them.*
 
+>*An error occurred (AccessDenied) when calling
+the PutObject operation: Access Denied*
+>this error shows up on both buckets
+
 *What were the results you expected, based on the role's policy?*
+>*we should successfuly upload an object on the bucket
+with the s3: full access policy*
 
 #### Lab 3.3.3: Conditional restrictions
 
@@ -365,11 +411,14 @@ Code at least one new positive and one new negative test.
 _Is it possible to limit uploads of objects with a specific prefix (e.g.
 starting with "lebowski/") to an S3 bucket using IAM conditions? If not, how else
 could this be accomplished?_
+>Not possible
+>This can be accomplished by inserting a condition in the role policy.
 
 #### Task: Limiting Uploads
 
 Research and review the best method to limit uploads with a specific prefix to
 an S3 bucket.
+>Insert a condition in the role policy or append the prefix to the Arn or the bucket with the action of Allow
 
 ## Further Reading
 
