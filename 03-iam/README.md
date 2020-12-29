@@ -276,10 +276,8 @@ User or Role whereas customer managed policy
 is a custom policy created and maintained
 by the user and can be re-used with other Users or Roles*
 
-
 - What are the differences
 between a customer managed policy and an AWS managed policy?_
-
 
 >*Customer managed policy is a custom policy created and
 maintained by the user whereas AWS managed policy
