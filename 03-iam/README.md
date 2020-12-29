@@ -268,8 +268,6 @@ Clean up. Take the actions necessary to delete the stack.
 
 #### Question: Inline vs Customer Managed Policies
 
->
-
 - In the context of an AWS User or Role, what is the difference between
 an inline policy and a customer managed policy?
 
