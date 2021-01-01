@@ -1,0 +1,16 @@
+[
+    
+    {
+        "ParameterKey": "AMI",
+        "ParameterValue": "ami-0be2609ba883822ec"
+    },
+    {
+        "ParameterKey": "InstanceType",
+        "ParameterValue": "t2.micro"
+    },
+    {
+        "ParameterKey": "KeyPair",
+        "ParameterValue": "dezKey"
+    }
+
+]

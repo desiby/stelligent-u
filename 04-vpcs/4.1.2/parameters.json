@@ -1,0 +1,8 @@
+[
+    
+        {
+            "ParameterKey": "VpcCidrBlock",
+            "ParameterValue": "10.16.0.0/16"
+        }
+    
+]

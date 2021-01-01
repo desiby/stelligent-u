@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: VPC peering connection
+ 
+Parameters: 
+      PeeredVPCId:
+        Description: id of peered VPC
+        Type: String
+      RequesterVPCId:
+        Description: id of requester VPC
+        Type: String
+Resources: 
+    PeerToPeerVPC:
+        Type: AWS::EC2::VPCPeeringConnection
+        Properties: 
+          PeerRegion: us-west-2
+          PeerVpcId: !Ref PeeredVPCId
+          Tags:
+            - Key: user
+              Value: desire.bahbioh.labs
+            - Key: stelligent-u-lesson
+              Value: "4.2"
+            - Key: stelligent-u-lab
+              Value: "4.2.1"
+          VpcId: !Ref RequesterVPCId
+
+Outputs:
+   VPCPeeringID:
+      Description: VPC peering connection Id
+      Value: !Ref PeerToPeerVPC
