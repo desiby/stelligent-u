@@ -14,12 +14,11 @@ Resources:
         Type: AWS::EC2::Instance
         Properties: 
           AvailabilityZone: "us-east-1a"
-          SubnetId: subnet-0c45d97855be11522
+          SubnetId: subnet-083f0cedf7e729189
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
           KeyName: !Ref KeyPair
           Tenancy: default
-          #PrivateIpAddress: 10.16.0.5
           Tags: 
             - Key: user
               Value: desire.bahbioh.labs
@@ -33,7 +32,7 @@ Resources:
         Type: AWS::EC2::Instance
         Properties: 
           AvailabilityZone: "us-east-1a"
-          SubnetId: subnet-0c93280905c10ed04
+          SubnetId: subnet-091a8dca3fbaf6a78
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
           KeyName: !Ref KeyPair
@@ -69,7 +68,7 @@ Resources:
               Value: "4.1"
             - Key: stelligent-u-lab
               Value: "4.1.8"
-          VpcId: vpc-066394e585aac9b27
+          VpcId: vpc-03d7fee22349df54a
     DesiEIP:
         Type: AWS::EC2::EIP
         Properties: 

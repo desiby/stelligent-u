@@ -2,17 +2,8 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: custom vpc 
 
 Parameters: 
-     PeeredVpcCidrBlock:
-        Description: Cidr block of peered vpc
-        Type: String
-     RequesterVpcCidrBlock:
-        Description: Cidr block of the requester vpc
-        Type: String
-     PeeredVPCId:
-        Description: id of peered VPC
-        Type: String
-     RequesterVPCId:
-        Description: id of Requester VPC
+     VpcCidrBlock:
+        Description: Cidr block
         Type: String
 
 Resources: 
@@ -20,7 +11,7 @@ Resources:
       DesireVPC:
           Type: AWS::EC2::VPC
           Properties:
-            CidrBlock: !Ref RequesterVpcCidrBlock
+            CidrBlock: !Ref VpcCidrBlock
             InstanceTenancy: default
             Tags:
             - Key: user
@@ -149,13 +140,13 @@ Resources:
             NatGatewayId: !Ref DesiNatGW
             RouteTableId: !Ref DesiRouteTable02
             DestinationCidrBlock: 0.0.0.0/0
-     #VPC peering route
-      DesiVPCPeeringRoute:
+      #vpc requester route
+      RequesterVpcRoute:
           Type: AWS::EC2::Route
           Properties: 
             RouteTableId: !Ref DesiRouteTable
-            VpcPeeringConnectionId: pcx-02d9f70bcb8278617
-            DestinationCidrBlock: !Ref PeeredVpcCidrBlock
+            VpcPeeringConnectionId: pcx-082ed02c8bc1aa075
+            DestinationCidrBlock: 192.168.0.0/20
 #NACls
       #Nacl for public subnet
       DesiPublicNacl:
@@ -189,15 +180,14 @@ Resources:
             Protocol: -1   #all ports needed to be opened opened
             RuleAction: allow
             CidrBlock: 10.16.1.0/24 #private subnet
-#Inbound rule for public subnet from private subnet in Peered VPC
-      PublicSubnetInboundFromPeeredVPC:
+      TrafficInboundFromAccepterVpc:
           Type: AWS::EC2::NetworkAclEntry
           Properties:
             NetworkAclId: !Ref DesiPublicNacl
             RuleNumber: 300
             Protocol: -1   #all ports needed to be opened opened
             RuleAction: allow
-            CidrBlock: !Ref PeeredVpcCidrBlock
+            CidrBlock: 192.168.0.0/20
       PublicSubnetOutboundRules:
           Type: AWS::EC2::NetworkAclEntry
           Properties:
@@ -271,7 +261,8 @@ Resources:
           Type: AWS::EC2::SubnetNetworkAclAssociation
           Properties: 
             NetworkAclId: !Ref DesiPrivateNacl
-            SubnetId: !Ref DPrivateSubnet      
+            SubnetId: !Ref DPrivateSubnet
+            
 
 Outputs:
       VPCid:

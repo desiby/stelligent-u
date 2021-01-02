@@ -5,6 +5,7 @@ Parameters:
      VpcCidrBlock:
         Description: Cidr block
         Type: String
+        Default: 10.16.0.0/16
 
 Resources: 
 #vpc

@@ -10,16 +10,16 @@ Parameters:
     KeyPair:
       Type: AWS::EC2::KeyPair::KeyName
 Resources:
+#public EC2 for VPC
     DesiEc2:
         Type: AWS::EC2::Instance
         Properties: 
           AvailabilityZone: "us-east-1a"
-          SubnetId: subnet-029c11386479ecb5e
+          SubnetId: subnet-051cac299ed6df556
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
           KeyName: !Ref KeyPair
           Tenancy: default
-          PrivateIpAddress: 10.16.0.5
           Tags: 
             - Key: user
               Value: desire.bahbioh.labs
@@ -29,16 +29,16 @@ Resources:
               Value: "4.1.7"
           SecurityGroupIds:
           - !Ref DesiSecurityGroups
+#private EC2 for VPC
     DesiPrivateEc2:
         Type: AWS::EC2::Instance
         Properties: 
           AvailabilityZone: "us-east-1a"
-          SubnetId: subnet-0dacf183c234f12e7
+          SubnetId: subnet-0538c9469f8da0147
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
           KeyName: !Ref KeyPair
           Tenancy: default
-          PrivateIpAddress: 10.16.1.5
           Tags: 
             - Key: user
               Value: desire.bahbioh.labs
@@ -69,7 +69,7 @@ Resources:
               Value: "4.1"
             - Key: stelligent-u-lab
               Value: "4.1.7"
-          VpcId: vpc-06c2f8ae988ac0734
+          VpcId: vpc-00aeadafe7662a446
     DesiEIP:
         Type: AWS::EC2::EIP
         Properties: 
@@ -84,12 +84,15 @@ Resources:
             Value: "4.1.7"
 
 Outputs:
-  InstanceId:
-    Description: Ec2 instance ID
+  PublicInstanceId:
+    Description: Public Ec2 instance ID
     Value: !Ref DesiEc2
-  PrivateIP:
-    Description: private ip address
+  PublicInstancePrivateIP:
+    Description: Public instance's Private IP
     Value: !GetAtt DesiEc2.PrivateIp
   ElasticPublicIP:
-    Description: public ip address
+    Description: Public instance's Public IP
     Value: !Ref DesiEIP
+  PrivateInstanceIP:
+    Description: Private instance's Private IP
+    Value: !GetAtt DesiPrivateEc2.PrivateIp

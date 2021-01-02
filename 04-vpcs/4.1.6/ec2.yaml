@@ -14,7 +14,7 @@ Resources:
         Type: AWS::EC2::Instance
         Properties: 
           AvailabilityZone: "us-east-1a"
-          SubnetId: subnet-0b43d8bd89853a219
+          SubnetId: subnet-051cac299ed6df556
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
           KeyName: !Ref KeyPair
@@ -50,7 +50,7 @@ Resources:
               Value: "4.1"
             - Key: stelligent-u-lab
               Value: "4.1.6"
-          VpcId: vpc-00cbd4fefb5006c92
+          VpcId: vpc-00aeadafe7662a446
     DesiEIP:
         Type: AWS::EC2::EIP
         Properties: 

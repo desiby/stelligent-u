@@ -14,19 +14,40 @@ Resources:
         Type: AWS::EC2::Instance
         Properties: 
           AvailabilityZone: "us-east-1a"
-          SubnetId: subnet-085d4ce1b5e34dd6c
+          SubnetId: subnet-051cac299ed6df556
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
           KeyName: !Ref KeyPair
           Tenancy: default
-          PrivateIpAddress: 10.16.0.5
           Tags: 
             - Key: user
               Value: desire.bahbioh.labs
             - Key: stelligent-u-lesson
               Value: "4.1"
             - Key: stelligent-u-lab
-              Value: "4.1.4"
+              Value: "4.1.5"
+    DesiSecurityGroups:
+        Type: AWS::EC2::SecurityGroup
+        Properties: 
+          GroupDescription: Allow ICMP and ssh
+          GroupName: sshping
+          SecurityGroupIngress: 
+          - IpProtocol: icmp
+            FromPort: -1
+            ToPort: -1
+            CidrIp: 0.0.0.0/0
+          - IpProtocol: tcp
+            FromPort: 22
+            ToPort: 22
+            CidrIp: 0.0.0.0/0
+          Tags: 
+            - Key: user
+              Value: desire.bahbioh.labs
+            - Key: stelligent-u-lesson
+              Value: "4.1"
+            - Key: stelligent-u-lab
+              Value: "4.1.5" 
+          VpcId: vpc-00aeadafe7662a446
 
 Outputs:
   InstanceId:

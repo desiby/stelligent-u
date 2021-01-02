@@ -2,18 +2,20 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: VPC peering connection
  
 Parameters: 
-      PeeredVPCId:
+      AccepterVPCId:
         Description: id of peered VPC
         Type: String
+        Default: vpc-0cea9e7491d4c016d
       RequesterVPCId:
         Description: id of requester VPC
         Type: String
+        Default: vpc-03d7fee22349df54a
 Resources: 
     PeerToPeerVPC:
         Type: AWS::EC2::VPCPeeringConnection
         Properties: 
-          PeerRegion: us-west-2
-          PeerVpcId: !Ref PeeredVPCId
+          PeerRegion: us-west-1
+          PeerVpcId: !Ref AccepterVPCId
           Tags:
             - Key: user
               Value: desire.bahbioh.labs

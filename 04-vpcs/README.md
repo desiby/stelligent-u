@@ -213,7 +213,8 @@ existing instance stack.
 _Can you find a way to ssh to this instance?_
 
 >*Yes, configure ssh-agent, then ssh into bastion host with ssh -A
-then from the bastion ssh into private instance*
+then from the bastion ssh into
+private instance using private ip*
 
 ##### Question: Egress
 
@@ -334,7 +335,7 @@ _Can you ping this instance from the public instance you created earlier?_
 _Can you ping your public instance from this private instance? Which IPs are
 reachable, the public instance's private IP or its public IP, or both?_
 
->*Yes only the pulic instance's private IP is reachable.
+>*Yes only the public instance's private IP is reachable.
 Use traceroute to see where traffic flows to both the public and private IPs.
 
 #### Lab 4.2.3: VPC Endpoint Gateway to S3

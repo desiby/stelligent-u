@@ -4,7 +4,7 @@ Resources:
    MyBucket:
      Type: AWS::S3::Bucket
      Properties:
-       BucketName: stelligent-u-desire.bahbioh 
+       BucketName: stelligent-u-desire.bb 
   
    MyBucketPolicy:
       Type: AWS::S3::BucketPolicy
@@ -13,25 +13,28 @@ Resources:
         PolicyDocument:
           Statement:
           - Action: 
-            - "s3:GetObject"
+            - "s3:*"
             Effect: Allow  
             Resource: 
-            - "arn:aws:s3:::stelligent-u-desire.bahbioh/*"
-            - "arn:aws:s3:::stelligent-u-desire.bahbioh"
+            - "arn:aws:s3:::stelligent-u-desire.bb/*"
+            - "arn:aws:s3:::stelligent-u-desire.bb"
             Principal: "*"
+            Condition:
+                StringEquals:
+                      aws:sourceVpce: VpcEndpointToS3
   
    AccessBuckets:
      Type: AWS::IAM::ManagedPolicy
      Properties:
-       ManagedPolicyName: reads3bucket
+       ManagedPolicyName: s3bucketAccess
        PolicyDocument: 
           Version: 2012-10-17
           Statement:
-          - Sid: AllowListingReading
+          - Sid: allowfullaccess
             Effect: Allow
             Action: "s3:*"
             Resource: 
-            - "arn:aws:s3:::stelligent-u-desire.bahbioh/*"
-            - "arn:aws:s3:::stelligent-u-desire.bahbioh"
+            - "arn:aws:s3:::stelligent-u-desire.bb/*"
+            - "arn:aws:s3:::stelligent-u-desire.bb"
        Users:
         - "desire.bahbioh.labs"
