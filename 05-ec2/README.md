@@ -131,6 +131,17 @@ Create the stack:
 - Use the AWS CLI to describe the stack's resources, then use the AWS
   CLI to describe each instance that was created.
 
+>*aws cloudformation describe-stack-resources
+--stack-name desi-ec2s*
+>
+>*aws cloudformation describe-stack-resource
+--logical-resource-id MyEc2Windows
+--stack-name desi-ec2s*
+>
+>*aws cloudformation describe-stack-resource
+--logical-resource-id MyEc2Ubuntu
+--stack-name desi-ec2s*
+
 #### Lab 5.1.3: Update Your Stack
 
 Change the AMI ID for the Windows instance to instead launch an AMI for
@@ -141,6 +152,8 @@ Windows Server 2012 R2:
 - Query the stack's events using the AWS CLI. What happened to your
   original EC2 Windows instance?
 
+>*The original EC2 Window instance was deleted*
+
 #### Lab 5.1.4: Teardown
 
 There is usually some delay between initiating an instance's termination
@@ -148,6 +161,9 @@ and the instance being considered eliminated altogether.
 
 - Delete your Stack. Immediately after initiating Stack deletion, see
   if you can query your instance states.
+
+>*Instances can be queried imediatly after
+deletion but will show a DELETE_IN_PROGRESS status*
 
 ### Retrospective 5.1
 
@@ -158,12 +174,19 @@ in your target region? If you did *not use* a scripted mechanism, go
 back and change your lab's code and repeat that lab: parameterize the
 CFN template to accept both Linux and Windows AMI IDs, and provide the
 values via a scripted mechanism.
+>*At first I referred to the list
+in the launch window from the console*
+>
+>*See script in retrospective5.1 folder*
 
 #### Question: Resource Replacement
 
 _When updating a Stack containing an EC2 instance,
 [what other changes](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html)
 will cause the same thing to occur as in Lab 5.1.3?_
+>*updating the imageId in the cfn template
+and updating the stack will cause the deletion
+of the affected resource with the previous imageId*
 
 ## Lesson 5.2: Instance Access
 
@@ -199,6 +222,7 @@ function.
   IPV4 address.
 
 Try pinging that IP address. Does it work?
+>*No it does not!*
 
 - Using the CFN template, create a Security Group enabling
   [ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol).
@@ -209,6 +233,7 @@ Try pinging that IP address. Does it work?
 
 Can you ping your instance now? If not, troubleshoot and fix the issue
 using your CFN template.
+>*Yes I can ping instance now*
 
 #### Lab 5.2.2: SSH Keys
 
@@ -232,12 +257,14 @@ able to SSH into the instance to debug and troubleshoot issues.
 - Recreate the Stack.
 
 Can you SSH into the instance?
+>*Not Yet!*
 
 - Update the CFN template to modify the ICMP-enabling Security Group,
   enabling SSH ingress on Port 22 from your IP and update the stack.
 
 Now can you SSH into your instance? If not, troubleshoot and fix the
 issue using your CFN template.
+>*Yes!*
 
 ### Retrospective 5.2
 
@@ -298,6 +325,8 @@ Userdata docs to debug.
 
   - Is it necessary to [apply monitoring scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html)
     to send data to CloudWatch?
+
+>*No, AWS recommend installing the cloudwatch agent.*
 
 - Create a new role that trusts the EC2 Service to assume it, and that
   has the privileges to perform whatever actions are necessary to

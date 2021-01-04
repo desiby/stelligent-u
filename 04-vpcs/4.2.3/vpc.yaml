@@ -145,7 +145,7 @@ Resources:
           Type: AWS::EC2::Route
           Properties: 
             RouteTableId: !Ref DesiRouteTable
-            VpcPeeringConnectionId: pcx-08f09bcb77bf314f8
+            VpcPeeringConnectionId: pcx-0d61a7315db4d6100
             DestinationCidrBlock: 192.168.0.0/20
 #NACls
       #Nacl for public subnet

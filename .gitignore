@@ -10,7 +10,7 @@ __pycache__
 *.code-workspace
 
 .ruby-version
-dezKey.pem
+*.pem
 
 00-dev-environment/hello_node/node_modules
 00-dev-environment/hello_node/package.json

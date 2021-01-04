@@ -5,11 +5,11 @@ Parameters:
       AccepterVPCId:
         Description: id of peered VPC
         Type: String
-        Default: vpc-0cea9e7491d4c016d
+        Default: vpc-0966d2e6f14eb801e
       RequesterVPCId:
         Description: id of requester VPC
         Type: String
-        Default: vpc-03d7fee22349df54a
+        Default: vpc-03fdc9612083f689a
 Resources: 
     PeerToPeerVPC:
         Type: AWS::EC2::VPCPeeringConnection

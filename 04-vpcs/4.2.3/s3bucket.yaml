@@ -4,7 +4,7 @@ Resources:
    MyBucket:
      Type: AWS::S3::Bucket
      Properties:
-       BucketName: stelligent-u-desire.bb 
+       BucketName: stelligent-u-desire.bbb 
   
    MyBucketPolicy:
       Type: AWS::S3::BucketPolicy
@@ -16,13 +16,12 @@ Resources:
             - "s3:*"
             Effect: Allow  
             Resource: 
-            - "arn:aws:s3:::stelligent-u-desire.bb/*"
-            - "arn:aws:s3:::stelligent-u-desire.bb"
-            Principal: "*"
+            - "arn:aws:s3:::stelligent-u-desire.bbb/*"
+            - "arn:aws:s3:::stelligent-u-desire.bbb"
+            Principal: "*" 
             Condition:
-                StringEquals:
-                      aws:sourceVpce: VpcEndpointToS3
-  
+                    StringEquals:
+                        aws:sourceVpce: vpce-0b3407d9ecd5222d7
    AccessBuckets:
      Type: AWS::IAM::ManagedPolicy
      Properties:
@@ -34,7 +33,7 @@ Resources:
             Effect: Allow
             Action: "s3:*"
             Resource: 
-            - "arn:aws:s3:::stelligent-u-desire.bb/*"
-            - "arn:aws:s3:::stelligent-u-desire.bb"
+            - "arn:aws:s3:::stelligent-u-desire.bbb/*"
+            - "arn:aws:s3:::stelligent-u-desire.bbb"
        Users:
         - "desire.bahbioh.labs"

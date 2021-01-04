@@ -7,7 +7,7 @@ Resources:
         Type: AWS::EC2::Instance
         Properties: 
           AvailabilityZone: "us-west-1a"
-          SubnetId: subnet-05b4250131c60b06b
+          SubnetId: subnet-08038c01c7e2b4614
           ImageId: ami-03130878b60947df3 
           InstanceType: t2.micro 
           KeyName: dezKey
@@ -42,7 +42,7 @@ Resources:
               Value: "4.1"
             - Key: stelligent-u-lab
               Value: "4.1.8"
-          VpcId: vpc-0cea9e7491d4c016d
+          VpcId: vpc-0966d2e6f14eb801e
 Outputs:
   PrivateInstancePrivateIP:
     Description: private instance ip address

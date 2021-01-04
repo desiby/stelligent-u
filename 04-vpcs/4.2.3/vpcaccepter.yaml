@@ -6,10 +6,6 @@ Parameters:
         Description: Cidr block
         Type: String
         Default: 192.168.0.0/20
-      S3BucketName:
-        Description: S3 bucket to connect to
-        Type: String
-        Default: stelligent-u-desire.bb
 
 Resources: 
 #vpc
@@ -29,6 +25,16 @@ Resources:
       VpcEndpointToS3:
           Type: AWS::EC2::VPCEndpoint
           Properties: 
+            PolicyDocument:
+                Version: 2012-10-17
+                Statement:
+                  - Effect: Allow
+                    Principal: '*'
+                    Action:
+                      - 's3:*'
+                    Resource:
+                    - "arn:aws:s3:::stelligent-u-desire.bbb/*"
+                    - "arn:aws:s3:::stelligent-u-desire.bbb"
             ServiceName: !Sub "com.amazonaws.${AWS::Region}.s3"
             RouteTableIds: 
             - !Ref AccepterRouteTable
@@ -74,7 +80,7 @@ Resources:
           Type: AWS::EC2::Route
           Properties: 
             RouteTableId: !Ref AccepterRouteTable
-            VpcPeeringConnectionId: pcx-08f09bcb77bf314f8
+            VpcPeeringConnectionId: pcx-0d61a7315db4d6100
             DestinationCidrBlock: 10.16.0.0/16
          
      
