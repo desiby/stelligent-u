@@ -267,6 +267,7 @@ Clean up. Take the actions necessary to delete the stack.
 ### Retrospective 3.2
 
 #### Question: Inline vs Customer Managed Policies
+>
 In the context of an AWS User or Role, what is the difference between
 an inline policy and a customer managed policy?
 
@@ -274,6 +275,7 @@ an inline policy and a customer managed policy?
 User or Role whereas customer managed policy
 is a custom policy created and maintained
 by the user and can be re-used with other Users or Roles*
+
 What are the differences
 between a customer managed policy and an AWS managed policy?_
 
