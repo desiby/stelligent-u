@@ -1,0 +1,14 @@
+[
+    {
+        "ParameterKey": "IAMroleManagedPolicyArn",
+        "ParameterValue": "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+    },
+    {
+        "ParameterKey": "EC2RoleManagedPolicyArn1",
+        "ParameterValue":"arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+    },
+    {
+        "ParameterKey": "EC2RoleManagedPolicyArn2",
+        "ParameterValue": "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+    }
+]
