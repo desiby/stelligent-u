@@ -268,8 +268,8 @@ Add another ACL to your private subnet:
 _Verify again that you can reach your instance._
 
 >*Private instance is now reachable after including
-  a Nacl inbound rule that Allow all traffic from
-  private subnet back into the bastion host in public Sbn.*
+a Nacl inbound rule that Allow all traffic from
+private subnet back into the bastion host in public Sbn.*
 
 ### Retrospective 4.1
 
