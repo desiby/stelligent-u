@@ -133,10 +133,15 @@ Launch an EC2 instance into your VPC.
 
 _After you launch your new stack, can you ssh to the instance?_
 
+>*No we cannot*
+
 ##### Question: Verify Connectivity
 
 _Is there a way that you can verify Internet connectivity from the instance
 without ssh'ing to it?_
+
+>*Yes by using the command:*
+>`ping <public ip address>`
 
 #### Lab 4.1.5: Security Group
 
@@ -147,6 +152,7 @@ Add a security group to your EC2 stack:
 ##### Question: Connectivity
 
 _Can you ssh to your instance yet?_
+>*No not yet.*
 
 #### Lab 4.1.6: Elastic IP
 
@@ -164,13 +170,19 @@ reachable from anywhere outside your VPC.
 
 _Can you ping your instance now?_
 
+>*Yes*
+
 ##### Question: SSH
 
 _Can you ssh into your instance now?_
 
+>*Yes*
+
 ##### Question: Traffic
 
 _If you can ssh, can you send any traffic (e.g. curl) out to the Internet?_
+
+> Yes
 
 At this point, you've made your public EC2 instance an [ssh bastion](https://docs.aws.amazon.com/quickstart/latest/linux-bastion/architecture.html).
 We'll make use of that to explore your network below.
@@ -200,19 +212,30 @@ existing instance stack.
 
 _Can you find a way to ssh to this instance?_
 
+>*Yes, configure ssh-agent, then ssh into bastion host with ssh -A
+then from the bastion ssh into
+private instance using private ip*
+
 ##### Question: Egress
 
 _If you can ssh to it, can you send traffic out?_
+
+>*Yes! because of the NAT gateway*
 
 ##### Question: Deleting the Gateway
 
 _If you delete the NAT gateway, what happens to the ssh session on your private
 instance?_
 
+>*The session times out*
+
 ##### Question: Recreating the Gateway
 
 _If you recreate the NAT gateway and detach the Elastic IP from the public EC2
 instance, can you still reach the instance from the outside?_
+
+>*No you will need a public ip address or
+public DNS name to reach the instance*
 
 Test it out with the AWS console.
 
@@ -231,6 +254,7 @@ First, add one on the public subnet:
 ##### Question: EC2 Connection
 
 _Can you still reach your EC2 instances?_
+>*I can reach the Bastion Host but not private instance*
 
 Add another ACL to your private subnet:
 
@@ -242,6 +266,10 @@ Add another ACL to your private subnet:
   public subnet.
 
 _Verify again that you can reach your instance._
+
+>*Private instance is now reachable after including
+a Nacl inbound rule that Allow all traffic from
+private subnet back into the bastion host in public Sbn.*
 
 ### Retrospective 4.1
 
@@ -300,11 +328,14 @@ Elastic IP.
 
 _Can you ping this instance from the public instance you created earlier?_
 
+>*Yes*
+
 ##### Question: Private to Public
 
 _Can you ping your public instance from this private instance? Which IPs are
 reachable, the public instance's private IP or its public IP, or both?_
 
+>*Yes only the public instance's private IP is reachable.
 Use traceroute to see where traffic flows to both the public and private IPs.
 
 #### Lab 4.2.3: VPC Endpoint Gateway to S3
@@ -346,6 +377,9 @@ you to learn._
 #### Question: Corporate Networks
 
 _How would you integrate your VPC with a corporate network?_
+
+>*by using one or a combination of VPN, VPCendpoints or
+AWS direct connnect service.*
 
 ## Further Reading
 

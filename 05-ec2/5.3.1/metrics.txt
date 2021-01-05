@@ -1,0 +1,191 @@
+command that fetch instance metrics:
+aws cloudwatch list-metrics --namespace AWS/EC2 --dimensions Name=InstanceId,Value=i-01856e0786d3a8259
+
+Output:
+{
+    "Metrics": [
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkPacketsIn",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkPacketsOut",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUUtilization",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkIn",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "NetworkOut",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskReadBytes",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskWriteBytes",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskReadOps",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "DiskWriteOps",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUCreditUsage",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUCreditBalance",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUSurplusCreditBalance",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "CPUSurplusCreditsCharged",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "StatusCheckFailed_System",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "StatusCheckFailed_Instance",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "StatusCheckFailed",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        },
+        {
+            "Namespace": "AWS/EC2",
+            "MetricName": "MetadataNoToken",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-01856e0786d3a8259"
+                }
+            ]
+        }
+    ]
+}
+
+CPU Utilization:
+aws cloudwatch get-metric-statistics --namespace AWS/EC2 --dimensions Name=InstanceId,Value=i-01856e0786d3a8259 --metric-name CPUUtilization --period 3600 --start-time 2021-01-04T18:15:00 --end-time 2021-01-04T18:40:00 --statistics Maximum
+{
+    "Label": "CPUUtilization",
+    "Datapoints": [
+        {
+            "Timestamp": "2021-01-04T18:15:00+00:00",
+            "Maximum": 0.169491525423731,
+            "Unit": "Percent"
+        }
+    ]
+}

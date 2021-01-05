@@ -4,7 +4,7 @@ Resources:
    MyBucket:
      Type: AWS::S3::Bucket
      Properties:
-       BucketName: stelligent-u-desire.bb
+       BucketName: stelligent-u-desire.bahbioh
        BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -20,7 +20,7 @@ Resources:
           - Action: 
             - "s3:GetObject"
             Effect: Allow  
-            Resource: "arn:aws:s3:::stelligent-u-desire.bb/*"
+            Resource: "arn:aws:s3:::stelligent-u-desire.bahbioh/*"
             Principal: "*"
   
    ReadAllS3Buckets:
