@@ -270,7 +270,6 @@ _Verify again that you can reach your instance._
 >*Private instance is now reachable after including
 a Nacl inbound rule that Allow all traffic from
 
-
 ### Retrospective 4.1
 
 For more information, read the [AWS Documentation on VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
@@ -378,8 +377,7 @@ you to learn._
 
 _How would you integrate your VPC with a corporate network?_
 
-
-AWS direct connnect service.*
+>*AWS direct connnect service.*
 
 ## Further Reading
 
