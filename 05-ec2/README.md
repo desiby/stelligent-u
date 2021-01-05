@@ -455,6 +455,7 @@ using a recent snapshot, reducing or avoiding Volume data loss.
 
 SSH into the instance. _Can you find the file that you wrote to your
 secondary ESB Volume?_
+>Yes!
 
 #### Lab 5.4.4: Instance Snapshots
 
