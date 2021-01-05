@@ -378,7 +378,7 @@ you to learn._
 
 _How would you integrate your VPC with a corporate network?_
 
->*by using one or a combination of VPN, VPCendpoints or 
+>*by using one or a combination of VPN, VPCendpoints or
 AWS direct connnect service.*
 
 ## Further Reading
