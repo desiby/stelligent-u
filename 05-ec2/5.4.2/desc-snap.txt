@@ -1,0 +1,16 @@
+aws ec2 describe-snapshots --snapshot-ids snap-0bd4fd4d31a68f9ce
+{
+    "Snapshots": [
+        {
+            "Description": "extra volume",
+            "Encrypted": false,
+            "OwnerId": "324320755747",
+            "Progress": "100%",
+            "SnapshotId": "snap-0bd4fd4d31a68f9ce",
+            "StartTime": "2021-01-05T18:51:05.233000+00:00",
+            "State": "completed",
+            "VolumeId": "vol-000af8632189baf6d",
+            "VolumeSize": 3
+        }
+    ]
+}

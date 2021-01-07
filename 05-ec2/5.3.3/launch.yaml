@@ -35,8 +35,8 @@ Resources:
           UserData:
             Fn::Base64: !Sub |
                 #!/bin/bash
-                sudo yum update -y
-                sudo yum install -y aws-cfn-bootstrap
+                sudo apt update
+                sudo apt install aws-cfn-bootstrap
                 --stack !Ref AWS::StackName
                 --resource MyEc2Ubuntu
         LaunchTemplateName: Stelligent-u-dbb

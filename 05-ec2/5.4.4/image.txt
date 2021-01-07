@@ -1,0 +1,4 @@
+aws ec2 create-image --instance-id i-07c673e7f2c7d652f --name "myserver"
+{
+    "ImageId": "ami-0e600b4c09bc346ed"
+}
