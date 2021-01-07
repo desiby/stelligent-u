@@ -51,7 +51,7 @@ Resources:
         UpdatePolicy:
            AutoScalingReplacingUpdate:
               WillReplace: true
-#cloudwatch alarm
+#cloudwatch alarms
    MyCloudWatchAlarmDbb:
           Type: AWS::CloudWatch::Alarm
           Properties: 
@@ -67,15 +67,35 @@ Resources:
             Statistic: Average
             Dimensions:
             - Name: "Myasgrule"
-              Value: !Ref MyAutoScalingGroupdbb
+              Value: !Ref MyAutoScalingGroupdbb 
+   MyCloudWatchAlarmScaleIn:
+          Type: AWS::CloudWatch::Alarm
+          Properties: 
+            AlarmActions: 
+            - !Ref MyAutoScalingPolicy
+            AlarmDescription: scale in when CPU < 40% over a period of 2min
+            ComparisonOperator: LessThanThreshold
+            EvaluationPeriods: 2
+            MetricName: CPUUtilization
+            Threshold: 60
+            Namespace: AWS/EC2
+            Period: 60
+            Statistic: Average
+            Dimensions:
+            - Name: "Myasgrule"
+              Value: !Ref MyAutoScalingGroupdbb             
 #auto scaling policy
    MyAutoScalingPolicy:
           Type: AWS::AutoScaling::ScalingPolicy
           Properties: 
             AdjustmentType: ChangeInCapacity
             AutoScalingGroupName: !Ref MyAutoScalingGroupdbb
-            PolicyType: SimpleScaling
-            ScalingAdjustment: 1
+            PolicyType: TargetTrackingScaling
+            TargetTrackingConfiguration: 
+                DisableScaleIn: false
+                PredefinedMetricSpecification: 
+                  PredefinedMetricType: ASGAverageCPUUtilization
+                TargetValue: 1.0
 #security group
    MySecurityGroupdbb:
       Type: AWS::EC2::SecurityGroup

@@ -107,10 +107,13 @@ Group (ASG): [ask Amazon to create one for us from a running instance](https://d
 ##### Question: Resources
 
 _What was created in addition to the new Auto Scaling Group?_
+>*A serviceLink Role*
 
 ##### Question: Parameters
 
 _What parameters did Amazon record in the resources it created for you?_
+>*the ASG Arn, MinSize, MaxSize,
+DesiredCapacity, DefaultCooldown*
 
 #### Lab 6.1.2: Launch Config and ASG in CFN
 
@@ -143,12 +146,14 @@ t2.small. Update your stack.
 ##### Question: Stack Updates
 
 _After updating your stack, did your running instance get replaced or resized?_
+>Not replaced nor resized
 
 Terminate the instance in your ASG.
 
 ##### Question: Replacement Instance
 
 _Is the replacement instance the new size or the old?_
+>Instance is new size(t2.small)
 
 #### Lab 6.1.4: ASG Update Policy
 
@@ -162,6 +167,7 @@ type to t2.medium. Update your stack.
 
 _After updating, what did you see change? Did your running instance get
 replaced this time?_
+>*Yes*
 
 ##### Question: Launch Config
 
@@ -223,12 +229,23 @@ using the CLI.
 Re-launch your stack, then [describe the resources](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/describe-stack-resources.html).
 From that output, find the name of your ASG.
 
+>*aws cloudformation describe-stack-resources
+--stack-name asg-stack*
+
 ##### Question: Filtering Output
 
 _Can you filter your output with "\--query" to print only your ASGs
 resource ID? Given that name, [describe your ASG](https://docs.aws.amazon.com/cli/latest/reference/autoscaling/describe-auto-scaling-groups.html).
 Find the Instance ID. Can you filter the output to print only the Instance ID
 value?_
+>*aws cloudformation describe-stack-resources
+--stack-name asg-stack --query
+"StackResources[0].PhysicalResourceId"*
+>
+>*aws autoscaling describe-auto-scaling-groups
+--auto-scaling-group-name
+asg-stack-MyAutoScalingGroupdbb-17WVUNGJ0IDQP
+--query "AutoScalingGroups[0].Instances[0].InstanceId"*
 
 (You can use the `--query` option, but you can also use
 [jq](https://stedolan.github.io/jq/). Both are useful in different scenarios.)
@@ -241,6 +258,7 @@ the new instance launch.
 
 _How long did it take for the new instance to spin up? How long before it was
 marked as healthy?_
+>*about 3 min to spin up and 3 min to be heatlthy
 
 #### Lab 6.2.2: Scale Out
 
@@ -252,10 +270,12 @@ then update the stack.
 ##### Question: Desired Count
 
 _Did it work? If it didn't, what else do you have to increase?_
+>*yes*
 
 ##### Question: Update Delay
 
 _How quickly after your stack update did you see the ASG change?_
+>*few seconds*
 
 #### Lab 6.2.3: Manual Interference
 
@@ -300,6 +320,8 @@ commands you run.
 #### Question: CloudWatch
 
 _How would you use AWS CloudWatch to help monitor your ASG?_
+>*by setting cloudwatch alarm and watch
+for any metric changes defined in the scaling policy*
 
 You can read more [here](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html)
 about CloudWatch monitoring with ASGs.
@@ -338,12 +360,14 @@ and use that command to spike the load.)
 ##### Question: Scaling Interval
 
 _After the scaling interval, do you see a new instance created?_
+>*yes*
 
 Stop the CPU-consuming process.
 
 ##### Question: Scale-In
 
 _After the load has been low for a few minutes, do you see any instances terminated?_
+>*yes*
 
 #### Lab 6.3.2: Simple Scale-In
 
