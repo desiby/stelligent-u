@@ -270,8 +270,6 @@ _Verify again that you can reach your instance._
 >*Private instance is now reachable after including
 a Nacl inbound rule that Allow all traffic from
 
-private subnet back into the bastion host in public Sbn.
-
 ### Retrospective 4.1
 
 For more information, read the [AWS Documentation on VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
@@ -378,10 +376,6 @@ you to learn._
 #### Question: Corporate Networks
 
 _How would you integrate your VPC with a corporate network?_
-
->*by using one or a combination of VPN, VPCendpoints or
-
-AWS direct connnect service.*
 
 ## Further Reading
 
