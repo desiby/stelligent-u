@@ -377,8 +377,6 @@ you to learn._
 
 _How would you integrate your VPC with a corporate network?_
 
->*AWS direct connnect service.*
-
 ## Further Reading
 
 - [VPN](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpn-connections.html)
