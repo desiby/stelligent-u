@@ -11,6 +11,7 @@ __pycache__
 
 .ruby-version
 *.pem
+*.key
 dbb.pem
 
 00-dev-environment/hello_node/node_modules

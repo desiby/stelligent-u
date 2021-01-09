@@ -68,6 +68,8 @@ many instances with an ALB.
 
 _What is the benefit of breaking up the load balancer into specific listeners
 and target groups?_
+>*it's to better manage apps into microservices
+and manage deployments and updates
 
 #### Lab 7.1.2: Health Checks
 
@@ -92,9 +94,15 @@ haywire!
 _What can be controlled with the interval/healthy threshold/unhealthy threshold
 settings?_
 
+>*the amount of tries it takes to
+declare a target healthy or unhealthy*
+
 ##### Question: ASG Behavior
 
 _What's happening to the instances in the ASG? How do you know?_
+
+>*the instances are running but are not healthy.
+we can know but checking the console or the cli*
 
 #### Lab 7.1.3: Secure Sockets
 
@@ -121,6 +129,9 @@ Let's fix that bad health check endpoint and add an https listener.
 ##### Question: SSL Policy
 
 _What is the trade off of going with a more secure SSL policy?_
+
+>*Application Load Balancers do not support SSL
+renegotiation for client or target connections*
 
 ##### Question: Certificate Management
 
