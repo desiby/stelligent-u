@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
+
 #auto scaling group
   WebServerAsg:
     Type: 'AWS::AutoScaling::AutoScalingGroup'
@@ -16,6 +17,7 @@ Resources:
       MinSize: '3'
       TargetGroupARNs: 
       - !Ref MyApplicationLoadBalancerTargetGrp 
+
 #load balancer target group 
   MyApplicationLoadBalancerTargetGrp:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
@@ -43,6 +45,7 @@ Resources:
       TargetType: instance
       UnhealthyThresholdCount: 2
       VpcId: vpc-0c81659bfa7cdf898
+
 #application load balancer
   MyAppLoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -62,6 +65,7 @@ Resources:
         - Key: stelligent-u-lab
           Value: "7.1.1"
       Type: application
+
 #load balancing listener http
   MyAlbListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
@@ -72,7 +76,8 @@ Resources:
       LoadBalancerArn: !Ref MyAppLoadBalancer
       Port: 80
       Protocol: HTTP
-#load balancing listener http
+
+#load balancing listener https
   MyAlbListenerHttps:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
@@ -88,6 +93,7 @@ Resources:
       Port: 443
       Protocol: HTTPS
       SslPolicy: ELBSecurityPolicy-FS-1-2-Res-2020-10
+
 #auto scaling launch config
   WebServersLC:
     Type: 'AWS::AutoScaling::LaunchConfiguration'
