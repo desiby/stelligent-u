@@ -1,0 +1,31 @@
+aws logs create-log-group --log-group-name desire.bahbioh.c9logs
+
+aws logs create-log-stream --log-group-name desire.bahbioh.c9logs --log-stream-name c9.training
+
+aws logs describe-log-groups --log-group-name-prefix desire.bahbioh.c9logs
+
+{
+    "logGroups": [
+        {
+            "logGroupName": "desire.bahbioh.c9logs",
+            "creationTime": 1610394801402,
+            "metricFilterCount": 0,
+            "arn": "arn:aws:logs:us-east-1:324320755747:log-group:desire.bahbioh.c9logs:*",
+            "storedBytes": 0
+        }
+    ]
+}
+
+aws logs describe-log-streams --log-group-name desire.bahbioh.c9logs
+{
+    "logStreams": [
+        {
+            "logStreamName": "c9.training",
+            "creationTime": 1610394924780,
+            "arn": "arn:aws:logs:us-east-1:324320755747:log-group:desire.bahbioh.c9logs:log-stream:c9.training",
+            "storedBytes": 0
+        }
+    ]
+}
+
+
