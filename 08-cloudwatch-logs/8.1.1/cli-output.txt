@@ -28,4 +28,6 @@ aws logs describe-log-streams --log-group-name desire.bahbioh.c9logs
     ]
 }
 
+aws logs get-log-events --log-group-name desire.bahbioh.c9logs --log-stream-name c9.training --region us-east-1
+
 

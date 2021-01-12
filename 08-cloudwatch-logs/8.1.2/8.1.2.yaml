@@ -27,11 +27,11 @@ Resources:
         IamInstanceProfile: 
           Name: !Ref InstanceProfile
         NetworkInterfaces:
-        - Groups:
-          - sg-0d1b5e753a2fc17cb
-          DeviceIndex: 0
-          AssociatePublicIpAddress: True
-          SubnetId: !FindInMap [ RegionMap, !Ref "AWS::Region", subnetId ]
+          - Groups:
+            - sg-0d1b5e753a2fc17cb
+            DeviceIndex: 0
+            AssociatePublicIpAddress: True
+            SubnetId: !FindInMap [ RegionMap, !Ref "AWS::Region", subnetId ]
         UserData: 
           Fn::Base64: !Sub | 
             #!/bin/bash -xe
@@ -54,7 +54,7 @@ Resources:
   EC2:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: dbb
+      KeyName: dbb 
       LaunchTemplate: 
         LaunchTemplateId: !Ref LaunchTemplate
         Version: "1"
@@ -68,12 +68,13 @@ Resources:
         config: 
           sources: 
             /etc/cloudwatchagent: https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip
+            /opt/cloudwatch-config: https://cw-812-dbb.s3.amazonaws.com/config.json.zip
           commands:
             installCloudwatch: 
               command: ./install.sh
               cwd: /etc/cloudwatchagent
             launchCloudwatch: 
-              command: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s
+              command: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/cloudwatch-config/config.json 
   InstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties: 
@@ -85,6 +86,7 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy
         - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
+        - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
       AssumeRolePolicyDocument: 
         Version: "2012-10-17"
         Statement: 
@@ -95,4 +97,8 @@ Resources:
                 - "ec2.amazonaws.com"
             Action: 
               - "sts:AssumeRole"
-  
+  #SecurityGroup:
+    #Type: AWS::EC2::SecurityGroup
+    #Properties: 
+      #GroupDescription: Topic 5 - EC2 Lab
+      #VpcId: !FindInMap [ RegionMap, !Ref "AWS::Region", vpcId ]
