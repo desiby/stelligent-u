@@ -119,7 +119,6 @@ lifecycle of the logs.
 
 - Use the AWS CLI to [set the retention policy](https://docs.aws.amazon.com/cli/latest/reference/logs/put-retention-policy.htm)
   of your log group to 60 days.
-
   >*aws logs put-retention-policy
   --log-group-name desire.bahbioh.c9logs
   --retention-in-days 60*
