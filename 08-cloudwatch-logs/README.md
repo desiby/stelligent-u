@@ -120,10 +120,21 @@ lifecycle of the logs.
 - Use the AWS CLI to [set the retention policy](https://docs.aws.amazon.com/cli/latest/reference/logs/put-retention-policy.htm)
   of your log group to 60 days.
 
+  >*aws logs put-retention-policy
+  --log-group-name desire.bahbioh.c9logs
+  --retention-in-days 60*
+
 - Use the CLI to review the policy in your log group.
+
+>*aws logs describe-log-groups
+--log-group-name-prefix desire.bahbioh.c9logs*
 
 - Set the retention policy to the maximum allowed time, and review the
   change again to double-check.
+
+>*aws logs put-retention-policy
+--log-group-name desire.bahbioh.c9logs
+--retention-in-days 3653*
 
 #### Lab 8.1.5: Clean up
 
@@ -144,8 +155,12 @@ limitations are.*
 
 - What are the minimum and maximum retention times?
 
+>*min = 1 , max = 3653*
+
 - Instead of keeping data in CW Logs forever, can you do anything else
   with them? What might a useful lifecycle for logs look like?
+
+>*We can put them on S3 and implement lifecycle policy*
 
 ## Lesson 8.2: CloudWatch Logs with CloudTrail events
 
@@ -206,6 +221,9 @@ for the resources that will use it:
 _What type of events might be important to track in an AWS account? If
 you were automating mitigating actions for the events, what might they
 be and what AWS resource(s) would you use?_
+
+>*Get api calls on all resources*
+>*We would use AWS SNS to notify and mitigate events.*
 
 #### Task
 
