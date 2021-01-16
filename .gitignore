@@ -16,6 +16,8 @@ dbb.pem
 
 dbb.pem
 
+*.zip
+
 00-dev-environment/hello_node/node_modules
 00-dev-environment/hello_node/package.json
 00-dev-environment/hello_node/package-lock.json

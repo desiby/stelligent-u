@@ -6,8 +6,8 @@ Resources:
     Properties:
       AutoScalingGroupName: 'AutomationBoxes'
       VPCZoneIdentifier:
-        - subnet-0ddf1015d31bb8469 # Find public subnets within the default VPC or 
-        - subnet-0e57092e5f64abb1c
+        - subnet-084ab536ab905c9be # Find public subnets within the default VPC or 
+        - subnet-024f86a6e15c6282b
       DesiredCapacity: '3'
       HealthCheckType: 'ELB'
       HealthCheckGracePeriod: 30 
@@ -39,7 +39,7 @@ Resources:
           Value: "7.1.1"
       TargetType: instance
       UnhealthyThresholdCount: 2
-      VpcId: vpc-0c81659bfa7cdf898
+      VpcId: vpc-0aac7ec1cb9a002ec
 #application load balancer
   MyAppLoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -47,10 +47,10 @@ Resources:
       IpAddressType: ipv4
       Scheme: internet-facing
       SecurityGroups: 
-        - sg-0a269819d700c9119
+        - sg-0d1b5e753a2fc17cb
       Subnets: 
-        - subnet-0ddf1015d31bb8469 # Find public subnets within the default VPC or 
-        - subnet-0e57092e5f64abb1c
+        - subnet-084ab536ab905c9be # Find public subnets within the default VPC or 
+        - subnet-024f86a6e15c6282b
       Tags: 
         - Key: user
           Value: desire.bahbioh.labs
@@ -77,7 +77,7 @@ Resources:
       InstanceType: t2.micro
       LaunchConfigurationName: SimpleWebServerLC
       SecurityGroups:
-        - sg-0a269819d700c9119
+        - sg-0d1b5e753a2fc17cb
       UserData: 
         Fn::Base64:
           Fn::Sub: |
