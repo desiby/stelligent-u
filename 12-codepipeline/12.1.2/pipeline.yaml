@@ -3,6 +3,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Deploy infrastructure through codepipeline 
 
 Resources: 
+#codepipeline
     MyPipeline:
         Type: AWS::CodePipeline::Pipeline
         Properties: 
@@ -64,6 +65,22 @@ Resources:
               Name: Create-S3-Bucket
               Region: us-east-1
             Name: Deploy
+          - Actions:
+            - ActionTypeId:
+                Category: Test
+                Owner: AWS
+                Provider: CodeBuild
+                Version: "1"
+              Configuration:
+                ProjectName: desire-bahbioh-lab12-test
+                PrimarySource: MyArtifact
+              InputArtifacts: 
+              - Name: MyArtifact
+              OutputArtifacts:
+              - Name: MyTestArtifact
+              Name: healthy
+              Region: us-east-1
+            Name: Test 
           Tags: 
           - Key: user
             Value: desire.bahbioh.labs
@@ -72,6 +89,7 @@ Resources:
           - Key: stelligent-u-lab
             Value: '12.1.2'
 
+#codebuild project
     MyCodeBuildProject:
       Type: AWS::CodeBuild::Project
       Properties:
@@ -85,6 +103,31 @@ Resources:
           ComputeType: BUILD_GENERAL1_SMALL
           Image: aws/codebuild/amazonlinux2-x86_64-standard:3.0
         Source: 
+          BuildSpec: buildspec_build.yml
+          Type: CODEPIPELINE
+        TimeoutInMinutes: 10
+        Tags:
+          - Key: user
+            Value: desire.bahbioh.labs
+          - Key: stelligent-u-lesson
+            Value: '12.1.2'
+          - Key: stelligent-u-lab
+            Value: '12.1.2'
+   
+    MyCodeBuildTesTProject:
+      Type: AWS::CodeBuild::Project
+      Properties:
+        Name: desire-bahbioh-lab12-test
+        Description: A description about my project
+        ServiceRole: !GetAtt MyCodeBuildExecutionServiceRole.Arn
+        Artifacts:
+          Type: CODEPIPELINE
+        Environment:
+          Type: LINUX_CONTAINER
+          ComputeType: BUILD_GENERAL1_SMALL
+          Image: aws/codebuild/amazonlinux2-x86_64-standard:3.0
+        Source: 
+          BuildSpec: buildspec_test.yml
           Type: CODEPIPELINE
         TimeoutInMinutes: 10
         Tags:
