@@ -1,0 +1,3 @@
+[submodule "12-codepipeline/12-codepipeline/12.1.2/aws-codepipeline-lab"]
+	path = 12-codepipeline/12-codepipeline/12.1.2/aws-codepipeline-lab
+	url = https://github.com/desiby/aws-codepipeline-lab.git
