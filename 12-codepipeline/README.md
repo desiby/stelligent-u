@@ -92,9 +92,6 @@ and its minimal set of requisite resources:
 Deploy the Pipeline stack via the AWS CLI; its creation should
 automatically initiate the first Pipeline execution.
 
->*dummy repository:
-https://github.com/desiby/aws-codepipeline-lab*
-
 #### Lab 12.1.2
 
 Add two new stages to your pipeline, utilizing CodeBuild:
@@ -142,7 +139,7 @@ you hard-coded any of the following:_
 - anything else that might enhance portability
 
 >*Pipeline is portable, will need to update name
-of resources in the template*  
+of resources in the template*
 
 #### Task
 
