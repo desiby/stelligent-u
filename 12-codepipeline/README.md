@@ -122,6 +122,9 @@ them, including the CFN resources you need:
 _Is executing a CloudFormation template a legitimate example of an
 "application"? Provide an explanation._
 
+>*No it is not because there is no proper app
+runtime installed and no unit test and no build artifacts*
+
 #### Question: Pipeline Template
 
 _Is your Pipeline template portable? Update and re-create your Pipeline if
@@ -134,6 +137,9 @@ you hard-coded any of the following:_
 - the S3 bucket name
 
 - anything else that might enhance portability
+
+>*Pipeline is portable, will need to update name
+of resources in the template*
 
 #### Task
 
